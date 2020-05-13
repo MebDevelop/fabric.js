@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas dir="rtl" id='c2' width="800" height="900"></canvas>
+
+    <script src="fabric.rtl.js"></script>
+    <script>
+
+        var iText2 = new fabric.IText('שלום עולם! \n זה ממש awesome שאפשר rtl!!!', {
+            left: 250,
+            top: 250,
+            lineHeight: 1.1,
+            originX: 'center',
+            originY: 'center'
+        });
+
+        var canvas = new fabric.Canvas('c2');
+
+        canvas.add(iText2);
+
+    </script>
+</body>
+
+</html>
