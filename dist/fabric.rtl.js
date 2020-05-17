@@ -29610,8 +29610,11 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
 
       ctx.fillStyle = this.cursorColor || this.getValueOfPropertyAt(lineIndex, charIndex, 'fill');
       ctx.globalAlpha = this.__isMousedown ? 1 : this._currentCursorOpacity;
+
+      var _x = this._cacheCanvas.dir && this._cacheCanvas.dir === 'rtl' ? - boundaries.left - boundaries.leftOffset - cursorWidth / 2 : boundaries.left + boundaries.leftOffset - cursorWidth / 2;
+
       ctx.fillRect(
-        boundaries.left + boundaries.leftOffset - cursorWidth / 2,
+        _x,
         topOffset + boundaries.top + dy,
         cursorWidth,
         charHeight);
@@ -29623,7 +29626,6 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
      * @param {CanvasRenderingContext2D} ctx transformed context to draw on
      */
     renderSelection: function (boundaries, ctx) {
-
       var selectionStart = this.inCompositionMode ? this.hiddenTextarea.selectionStart : this.selectionStart,
         selectionEnd = this.inCompositionMode ? this.hiddenTextarea.selectionEnd : this.selectionEnd,
         isJustify = this.textAlign.indexOf('justify') !== -1,
@@ -29659,8 +29661,10 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
         if (this.lineHeight < 1 || (i === endLine && this.lineHeight > 1)) {
           lineHeight /= this.lineHeight;
         }
+
         if (this.inCompositionMode) {
           ctx.fillStyle = this.compositionColor || 'black';
+
           ctx.fillRect(
             boundaries.left + lineOffset + boxStart,
             boundaries.top + boundaries.topOffset + lineHeight,
