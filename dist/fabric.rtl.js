@@ -29611,6 +29611,7 @@ fabric.Image.filters.BaseFilter.fromObject = function (object, callback) {
       ctx.fillStyle = this.cursorColor || this.getValueOfPropertyAt(lineIndex, charIndex, 'fill');
       ctx.globalAlpha = this.__isMousedown ? 1 : this._currentCursorOpacity;
 
+      // YaakovHatam: rtl
       var _x = this._cacheCanvas.dir && this._cacheCanvas.dir === 'rtl' ? - boundaries.left - boundaries.leftOffset - cursorWidth / 2 : boundaries.left + boundaries.leftOffset - cursorWidth / 2;
 
       ctx.fillRect(
