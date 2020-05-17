@@ -31039,8 +31039,18 @@ fabric.util.object.extend(fabric.IText.prototype, /** @lends fabric.IText.protot
     if (!this.isEditing) {
       return;
     }
-    if (e.keyCode in this.keysMap) {
-      this[this.keysMap[e.keyCode]](e);
+    // YaakovHatam: swap for rtl
+    var _keyCode = e.keyCode;
+    if (this._cacheCanvas.dir && this._cacheCanvas.dir == 'rtl') {
+      if (_keyCode === 35 || _keyCode === 39) {
+        _keyCode = 36;
+      } else if (_keyCode === 36 || _keyCode === 37) {
+        _keyCode = 35;
+      }
+    }
+
+    if (_keyCode in this.keysMap) {
+      this[this.keysMap[_keyCode]](e);
     }
     else if ((e.keyCode in this.ctrlKeysMapDown) && (e.ctrlKey || e.metaKey)) {
       this[this.ctrlKeysMapDown[e.keyCode]](e);
